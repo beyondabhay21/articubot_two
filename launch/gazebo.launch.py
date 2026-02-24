@@ -16,6 +16,7 @@ def generate_launch_description():
     share_dir = get_package_share_directory('articubot_two_description')
     xacro_file = os.path.join(share_dir, 'urdf', 'articubot_two.xacro')
     robot_urdf = xacro.process_file(xacro_file).toxml()
+    rviz_config = os.path.join(share_dir, 'config', 'gazebo.rviz')
 
     robot_state_publisher = Node(
         package='robot_state_publisher',
@@ -91,6 +92,16 @@ def generate_launch_description():
         )]
     )
 
+    rviz = TimerAction(
+        period=8.0,
+        actions=[Node(
+            package='rviz2',
+            executable='rviz2',
+            arguments=['-d', rviz_config],
+            output='screen',
+        )]
+    )
+
     return LaunchDescription([
         robot_state_publisher,
         gazebo_server,
@@ -98,4 +109,5 @@ def generate_launch_description():
         spawn_robot,
         joint_state_broadcaster,
         diff_drive_controller,
+        rviz,
     ])

@@ -17,7 +17,7 @@
       <geometry>
         <mesh filename="file://$(find articubot_two_description)/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
       </geometry>
-      <material name="silver"/>
+      <material name="red"/>
     </visual>
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0"/>
@@ -71,7 +71,7 @@
     </collision>
   </link>
 
-  <!-- LIDAR -->
+  <!-- LIDAR LINK -->
   <link name="lidar_joint_1">
     <inertial>
       <origin xyz="0.0 0.0 0.0" rpy="0 0 0"/>
@@ -83,7 +83,7 @@
       <geometry>
         <mesh filename="file://$(find articubot_two_description)/meshes/lidar_joint_1.stl" scale="0.001 0.001 0.001"/>
       </geometry>
-      <material name="silver"/>
+      <material name="blue"/>
     </visual>
     <collision>
       <origin xyz="0.057768 -0.002232 -0.136" rpy="0 0 0"/>
@@ -93,7 +93,7 @@
     </collision>
   </link>
 
-  <!-- CAMERA -->
+  <!-- CAMERA LINK -->
   <link name="camera_joint_1">
     <inertial>
       <origin xyz="0.0 0.0 0.0" rpy="0 0 0"/>

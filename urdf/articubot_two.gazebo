@@ -1,8 +1,6 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
 
-  <xacro:property name="body_color" value="Gazebo/Silver"/>
-
   <gazebo>
     <plugin filename="libgazebo_ros2_control.so" name="gazebo_ros2_control">
       <parameters>$(find articubot_two_description)/config/diff_drive_controller.yaml</parameters>
@@ -10,7 +8,7 @@
   </gazebo>
 
   <gazebo reference="base_link">
-    <material>${body_color}</material>
+    <material>Gazebo/Red</material>
     <mu1>0.0</mu1>
     <mu2>0.0</mu2>
     <self_collide>true</self_collide>
@@ -18,7 +16,7 @@
   </gazebo>
 
   <gazebo reference="left_wheel_1">
-    <material>${body_color}</material>
+    <material>Gazebo/Black</material>
     <mu1>2.0</mu1>
     <mu2>2.0</mu2>
     <kp>1000000.0</kp>
@@ -27,7 +25,7 @@
   </gazebo>
 
   <gazebo reference="right_wheel_1">
-    <material>${body_color}</material>
+    <material>Gazebo/Black</material>
     <mu1>2.0</mu1>
     <mu2>2.0</mu2>
     <kp>1000000.0</kp>
@@ -36,14 +34,46 @@
   </gazebo>
 
   <gazebo reference="lidar_joint_1">
-    <material>${body_color}</material>
+    <material>Gazebo/Blue</material>
     <mu1>0.0</mu1>
     <mu2>0.0</mu2>
     <self_collide>true</self_collide>
+    <sensor name="lidar_sensor" type="ray">
+      <always_on>true</always_on>
+      <visualize>true</visualize>
+      <update_rate>10</update_rate>
+      <ray>
+        <scan>
+          <horizontal>
+            <samples>360</samples>
+            <resolution>1</resolution>
+            <min_angle>-3.14159</min_angle>
+            <max_angle>3.14159</max_angle>
+          </horizontal>
+        </scan>
+        <range>
+          <min>0.15</min>
+          <max>12.0</max>
+          <resolution>0.01</resolution>
+        </range>
+        <noise>
+          <type>gaussian</type>
+          <mean>0.0</mean>
+          <stddev>0.01</stddev>
+        </noise>
+      </ray>
+      <plugin name="lidar_plugin" filename="libgazebo_ros_ray_sensor.so">
+        <ros>
+          <remapping>~/out:=scan</remapping>
+        </ros>
+        <output_type>sensor_msgs/LaserScan</output_type>
+        <frame_name>lidar_joint_1</frame_name>
+      </plugin>
+    </sensor>
   </gazebo>
 
   <gazebo reference="camera_joint_1">
-    <material>${body_color}</material>
+    <material>Gazebo/Grey</material>
     <mu1>0.0</mu1>
     <mu2>0.0</mu2>
     <self_collide>true</self_collide>
