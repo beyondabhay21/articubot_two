@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<package format="3">
+  <name>articubot_two_description</name>
+  <version>0.0.0</version>
+  <description>articubot_two_description package</description>
+  <maintainer email="todo@todo.com">author</maintainer>
+  <license>TODO</license>
+
+  <depend>rclpy</depend>
+  <depend>xacro</depend>
+  <depend>rviz2</depend>
+  <depend>robot_state_publisher</depend>
+  <depend>joint_state_publisher</depend>
+  <depend>joint_state_publisher_gui</depend>
+  <depend>gazebo_ros</depend>
+  <depend>gazebo_ros2_control</depend>
+  <depend>diff_drive_controller</depend>
+  <depend>joint_state_broadcaster</depend>
+
+  <test_depend>ament_lint_auto</test_depend>
+  <test_depend>ament_lint_common</test_depend>
+
+  <export>
+    <build_type>ament_python</build_type>
+  </export>
+</package>

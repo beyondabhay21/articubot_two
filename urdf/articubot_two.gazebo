@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <xacro:property name="body_color" value="Gazebo/Silver"/>
+
+  <gazebo>
+    <plugin filename="libgazebo_ros2_control.so" name="gazebo_ros2_control">
+      <parameters>$(find articubot_two_description)/config/diff_drive_controller.yaml</parameters>
+    </plugin>
+  </gazebo>
+
+  <gazebo reference="base_link">
+    <material>${body_color}</material>
+    <mu1>0.0</mu1>
+    <mu2>0.0</mu2>
+    <self_collide>true</self_collide>
+    <gravity>true</gravity>
+  </gazebo>
+
+  <gazebo reference="left_wheel_1">
+    <material>${body_color}</material>
+    <mu1>2.0</mu1>
+    <mu2>2.0</mu2>
+    <kp>1000000.0</kp>
+    <kd>10.0</kd>
+    <self_collide>false</self_collide>
+  </gazebo>
+
+  <gazebo reference="right_wheel_1">
+    <material>${body_color}</material>
+    <mu1>2.0</mu1>
+    <mu2>2.0</mu2>
+    <kp>1000000.0</kp>
+    <kd>10.0</kd>
+    <self_collide>false</self_collide>
+  </gazebo>
+
+  <gazebo reference="lidar_joint_1">
+    <material>${body_color}</material>
+    <mu1>0.0</mu1>
+    <mu2>0.0</mu2>
+    <self_collide>true</self_collide>
+  </gazebo>
+
+  <gazebo reference="camera_joint_1">
+    <material>${body_color}</material>
+    <mu1>0.0</mu1>
+    <mu2>0.0</mu2>
+    <self_collide>true</self_collide>
+  </gazebo>
+
+</robot>

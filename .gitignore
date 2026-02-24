@@ -1,0 +1,19 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+*.egg
+
+# Build
+build/
+install/
+log/
+
+# RViz
+*.rviz.bak
+
+# Windows junk (Zone.Identifier files from Windows copy)
+*:Zone.Identifier
+
+# Colcon
+.colcon_install_layout
