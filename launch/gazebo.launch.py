@@ -14,6 +14,7 @@ from launch_ros.substitutions import FindPackageShare
 
 def generate_launch_description():
     share_dir = get_package_share_directory('articubot_two_description')
+    world_file = os.path.join(share_dir, 'worlds', 'articubot_world.world')
     xacro_file = os.path.join(share_dir, 'urdf', 'articubot_two.xacro')
     robot_urdf = xacro.process_file(xacro_file).toxml()
     rviz_config = os.path.join(share_dir, 'config', 'gazebo.rviz')
@@ -38,6 +39,7 @@ def generate_launch_description():
         launch_arguments={
             'pause': 'false',
             'verbose': 'false',
+            'world': world_file,
         }.items()
     )
 

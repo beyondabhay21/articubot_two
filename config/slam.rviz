@@ -43,16 +43,6 @@ Visualization Manager:
         History Policy: Keep Last
         Reliability Policy: Reliable
         Value: /map
-    - Class: rviz_default_plugins/Odometry
-      Enabled: true
-      Name: Odometry
-      Topic:
-        Depth: 5
-        Durability Policy: Volatile
-        History Policy: Keep Last
-        Reliability Policy: Reliable
-        Value: /diff_drive_controller/odom
-      Keep: 50
   Global Options:
     Background Color: 48; 48; 48
     Fixed Frame: map
