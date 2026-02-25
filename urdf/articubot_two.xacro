@@ -115,12 +115,34 @@
     </collision>
   </link>
 
+  <!-- IMU LINK -->
+  <link name="imu_link">
+    <inertial>
+      <origin xyz="0.0 0.0 0.0" rpy="0 0 0"/>
+      <mass value="0.01"/>
+      <inertia ixx="1e-06" iyy="1e-06" izz="1e-06" ixy="0.0" iyz="0.0" ixz="0.0"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.02 0.02 0.02"/>
+      </geometry>
+      <material name="white"/>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.02 0.02 0.02"/>
+      </geometry>
+    </collision>
+  </link>
+
   <!-- JOINTS -->
   <joint name="left_wheel_joint" type="continuous">
     <origin xyz="0.002232 0.102232 0.035" rpy="0 0 0"/>
     <parent link="base_link"/>
     <child link="left_wheel_1"/>
-    <axis xyz="0.0 -1.0 0.0"/>
+    <axis xyz="0.0 1.0 0.0"/>
     <dynamics damping="0.01" friction="0.01"/>
   </joint>
 
@@ -128,7 +150,7 @@
     <origin xyz="0.002232 -0.097768 0.035" rpy="0 0 0"/>
     <parent link="base_link"/>
     <child link="right_wheel_1"/>
-    <axis xyz="0.0 -1.0 0.0"/>
+    <axis xyz="0.0 1.0 0.0"/>
     <dynamics damping="0.01" friction="0.01"/>
   </joint>
 
@@ -142,6 +164,12 @@
     <origin xyz="0.164232 0.002232 0.053" rpy="0 0 0"/>
     <parent link="base_link"/>
     <child link="camera_joint_1"/>
+  </joint>
+
+  <joint name="imu_joint" type="fixed">
+    <origin xyz="0.0 0.0 0.05" rpy="0 0 0"/>
+    <parent link="base_link"/>
+    <child link="imu_link"/>
   </joint>
 
   <!-- ROS2 CONTROL -->

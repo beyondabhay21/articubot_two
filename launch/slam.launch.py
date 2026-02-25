@@ -2,10 +2,7 @@ import os
 import xacro
 from ament_index_python.packages import get_package_share_directory
 from launch import LaunchDescription
-from launch.actions import (
-    IncludeLaunchDescription,
-    TimerAction,
-)
+from launch.actions import IncludeLaunchDescription, TimerAction
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch.substitutions import PathJoinSubstitution
 from launch_ros.actions import Node
@@ -19,6 +16,7 @@ def generate_launch_description():
     robot_urdf = xacro.process_file(xacro_file).toxml()
     slam_config = os.path.join(share_dir, 'config', 'slam_toolbox.yaml')
     rviz_config = os.path.join(share_dir, 'config', 'slam.rviz')
+    ekf_config = os.path.join(share_dir, 'config', 'ekf.yaml')
 
     robot_state_publisher = Node(
         package='robot_state_publisher',
@@ -95,9 +93,22 @@ def generate_launch_description():
         )]
     )
 
-    # SLAM toolbox node
-    slam = TimerAction(
+    ekf_node = TimerAction(
         period=14.0,
+        actions=[Node(
+            package='robot_localization',
+            executable='ekf_node',
+            name='ekf_filter_node',
+            parameters=[
+                ekf_config,
+                {'use_sim_time': True}
+            ],
+            output='screen',
+        )]
+    )
+
+    slam = TimerAction(
+        period=16.0,
         actions=[Node(
             package='slam_toolbox',
             executable='async_slam_toolbox_node',
@@ -111,7 +122,7 @@ def generate_launch_description():
     )
 
     rviz = TimerAction(
-        period=10.0,
+        period=15.0,
         actions=[Node(
             package='rviz2',
             executable='rviz2',
@@ -127,6 +138,7 @@ def generate_launch_description():
         spawn_robot,
         joint_state_broadcaster,
         diff_drive_controller,
+        ekf_node,
         slam,
         rviz,
     ])
