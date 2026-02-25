@@ -42,9 +42,9 @@
       <material name="black"/>
     </visual>
     <collision>
-      <origin xyz="-0.002232 -0.102232 -0.035" rpy="0 0 0"/>
+      <origin xyz="0.0 0.0 0.0" rpy="1.5707 0.0 0.0"/>
       <geometry>
-        <mesh filename="file://$(find articubot_two_description)/meshes/left_wheel_1.stl" scale="0.001 0.001 0.001"/>
+        <cylinder radius="0.035" length="0.025"/>
       </geometry>
     </collision>
   </link>
@@ -64,9 +64,9 @@
       <material name="black"/>
     </visual>
     <collision>
-      <origin xyz="-0.002232 0.097768 -0.035" rpy="0 0 0"/>
+      <origin xyz="0.0 0.0 0.0" rpy="1.5707 0.0 0.0"/>
       <geometry>
-        <mesh filename="file://$(find articubot_two_description)/meshes/right_wheel_1.stl" scale="0.001 0.001 0.001"/>
+        <cylinder radius="0.035" length="0.025"/>
       </geometry>
     </collision>
   </link>
