@@ -68,6 +68,7 @@
         </ros>
         <output_type>sensor_msgs/LaserScan</output_type>
         <frame_name>lidar_joint_1</frame_name>
+        <min_intensity>0</min_intensity>
       </plugin>
     </sensor>
   </gazebo>
