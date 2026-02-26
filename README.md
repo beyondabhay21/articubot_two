@@ -38,9 +38,8 @@ colcon build --symlink-install
 source install/setup.bash
 ros2 launch articubot_two_description slam.launch.py
 ```
-### TELOP
+### Map Saving
 ```bash
-source ~/articubot_two_ws/install/setup.bash
-ros2 run teleop_twist_keyboard teleop_twist_keyboard \
-  --ros-args --remap cmd_vel:=/diff_drive_controller/cmd_vel_unstamped
+mkdir -p ~/articubot_two_ws/maps
+ros2 run nav2_map_server map_saver_cli -f ~/articubot_two_ws/maps/articubot_map
 ```
